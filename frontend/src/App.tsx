@@ -1,6 +1,27 @@
+import { Route, BrowserRouter as Router , Routes } from "react-router-dom";
+import Layout from "./layouts/Layout";
+
 const App = () => {
   return(
-    <div>Home</div>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <Layout>
+            <p>Home Page</p>
+          </Layout>
+        } />
+        <Route path="/search" element={
+          <Layout>
+            <p>Search Page</p>
+          </Layout>
+        } />
+        <Route path="*" element={
+          <Layout>
+            <p>Not Found Page</p>
+          </Layout>
+        } />
+      </Routes>
+    </Router>
   )
 }
 
