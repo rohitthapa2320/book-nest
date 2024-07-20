@@ -1,22 +1,28 @@
 import { Route, BrowserRouter as Router , Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
+import Register from "./pages/Register";
 
 const App = () => {
   return(
     <Router>
       <Routes>
         <Route path="/" element={
-          <Layout>
+          <Layout isAuthPage={false}>
             <p>Home Page</p>
           </Layout>
         } />
+        <Route path="/register" element={
+          <Layout isAuthPage={true}>
+            <Register />
+          </Layout>
+        } />
         <Route path="/search" element={
-          <Layout>
+          <Layout isAuthPage={false}>
             <p>Search Page</p>
           </Layout>
         } />
         <Route path="*" element={
-          <Layout>
+          <Layout isAuthPage={false}>
             <p>Not Found Page</p>
           </Layout>
         } />

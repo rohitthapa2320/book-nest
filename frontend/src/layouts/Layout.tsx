@@ -4,15 +4,19 @@ import Hero from "../components/Hero";
 
 interface LayoutProps{
   children: React.ReactNode;
+  isAuthPage: boolean
 };
 
 const Layout = ({
-  children
+  children,
+  isAuthPage
 }:LayoutProps) => {
   return(
     <div className="flex flex-col min-h-screen">
       <Header />
-      <Hero />
+      {
+        !isAuthPage && <Hero /> 
+      }
       <div className="container mx-auto py-10 flex-1">
         {children}
       </div>
