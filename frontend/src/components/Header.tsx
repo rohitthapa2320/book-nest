@@ -14,8 +14,16 @@ const Header = () => {
           {
             isLoggedIn  ? (
               <>
-                <Link to="/my-bookins">My Bookings</Link>
-                <Link to="/my-hotels">My Hotels</Link>
+                <Link to="/my-bookings"
+                  className="flex items-center text-white font-bold hover:bg-blue-600 px-3" 
+                >
+                  My Bookings
+                </Link>
+                <Link to="/my-hotels"
+                  className="flex items-center text-white px-3 font-bold hover:bg-blue-600"
+                >
+                  My Hotels
+                </Link>
                 <SignOutButton />
               </>
             ):<Link 
