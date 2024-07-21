@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router , Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
 
 const App = () => {
   return(
@@ -14,6 +15,11 @@ const App = () => {
         <Route path="/register" element={
           <Layout isAuthPage={true}>
             <Register />
+          </Layout>
+        } />
+        <Route path="/sign-in" element={
+          <Layout isAuthPage={true}>
+            <SignIn />
           </Layout>
         } />
         <Route path="/search" element={

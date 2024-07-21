@@ -23,15 +23,17 @@ export const AppContextProvider = ({
 }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>( undefined);
 
-  const {isError} = useQuery("validateToken", apiClient.validateToken, {
+  const {data, isError} = useQuery("validateToken", apiClient.validateToken, {
     retry: false
-  })
+  });
+
+  console.log("data", data);
   return(
     <AppContext.Provider value={{
       showToast: (toastMessage) => {
         setToast(toastMessage)
       },
-      isLoggedIn: !isError
+      isLoggedIn: data ? !isError : data
     }}>
       {toast && <Toast 
           message={toast.message} 
