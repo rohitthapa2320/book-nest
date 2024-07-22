@@ -2,8 +2,11 @@ import { Route, BrowserRouter as Router , Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import { useAppContext } from "./context/AppContext";
+import AddHotel from "./pages/AddHotel";
 
 const App = () => {
+  const { isLoggedIn }= useAppContext();
   return(
     <Router>
       <Routes>
@@ -27,6 +30,16 @@ const App = () => {
             <p>Search Page</p>
           </Layout>
         } />
+        {
+          isLoggedIn && 
+          <>
+            <Route path="/add-hotel" element={
+              <Layout isAuthPage={true}>
+                <AddHotel />
+              </Layout>
+            } />
+          </>
+        }
         <Route path="*" element={
           <Layout isAuthPage={false}>
             <p>Not Found Page</p>
