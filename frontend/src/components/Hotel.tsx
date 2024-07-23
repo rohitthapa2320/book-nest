@@ -57,7 +57,7 @@ const Hotel = ({
           to={`/edit-hotel/${_id}`}
             className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500"
           >
-            View Details
+            Edit Details
           </Link>
         </div>
       </div>

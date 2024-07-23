@@ -15,6 +15,8 @@ const upload= multer({
   }
 });
 
+// GET /api/my-hotels
+
 router.get("/", verifyToken, async(req: Request, res: Response) => {
   try {
     const hotels = await Hotel.find({userId: req.userId});
@@ -79,5 +81,24 @@ router.post("/", verifyToken,[
     })
   }
 });
+
+// /api/my-hotels/:id
+
+router.get("/:id", verifyToken, async(req: Request, res: Response) => {
+  const id = req.params.id.toString();
+  console.log("id", id);
+  try {
+    const hotel = await Hotel.find({
+      userId: req.userId,
+      _id: id
+    });
+
+    return res.status(200).json(hotel);
+  } catch (error) {
+    return res.status(500).json({
+      message: `Error while fetching hotel details for id: ${id}`
+    })
+  }
+})
 
 export default router;
