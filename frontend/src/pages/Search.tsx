@@ -9,13 +9,14 @@ import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StarRatingFilter";
 import HotelTypesFilter from "../components/HotelTypesFilter";
 import HotelFacilitiesFilter from "../components/HotelFacilitiesFilter";
-import MaxPriceFilter from "./MaxPriceFilter";
+import MaxPriceFilter from "../components/MaxPriceFilter";
 
 const Search = () => {
   const [selectedStars, setSelectedStars] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
+  const [sortOptions, setSortOptions] = useState<string>("");
   const search = useSearchContext();
   const [page, setPage] = useState<number>(1);
 
@@ -30,6 +31,7 @@ const Search = () => {
     types: selectedTypes,
     facilities: selectedFacilities,
     maxPrice: selectedPrice?.toString(),
+    sortOptions,
   };
 
   const { data: searchResults } = useQuery<HotelSearchResponse>(
@@ -99,7 +101,20 @@ const Search = () => {
             {searchResults?.pagination.total} Hotels Found
             {search.destination ? ` in ${search.destination}` : ""}
           </span>
-          {/* TODO sort options */}
+          <select
+            value={sortOptions}
+            onChange={(event) => setSortOptions(event.target.value)}
+            className="p-2 border rounded-md"
+          >
+            <option value="">Sort By</option>
+            <option value="rating">Star Rating</option>
+            <option value="pricePerNightAsc">
+              Price Per Night (low to high)
+            </option>
+            <option value="pricePerNightDesc">
+              Price Per Night (high to low)
+            </option>
+          </select>
         </div>
         {searchResults?.data.map((hotel) => (
           <SearchResultCard hotel={hotel} />
