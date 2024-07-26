@@ -10,8 +10,8 @@ const EditHotel = () => {
   const { hotelId } = useParams();
   const { showToast } = useAppContext();
   const { data: hotel } = useQuery<HotelType>(
-    "fetch-hotel-details",
-    () => apiClient.fetchHotelDetailsById(hotelId || ""),
+    "fetch-my-hotel-details",
+    () => apiClient.fetchMyHotelDetailsById(hotelId || ""),
     {
       enabled: !!hotelId,
       retry: false,

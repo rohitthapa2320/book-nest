@@ -60,7 +60,6 @@ const constructSearchQuery = (queryParams: any) => {
 };
 
 // GET /api/hotels/search
-
 router.get("/search", async (req: Request, res: Response) => {
   try {
     const query = constructSearchQuery(req.query);
@@ -106,6 +105,26 @@ router.get("/search", async (req: Request, res: Response) => {
     return res.status(200).json(response);
   } catch (error) {
     console.log("error", error);
+    return res.status(500).json({
+      message: "Something went wrong.",
+    });
+  }
+});
+
+//GET /api/hotels/:id
+router.get("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id.toString();
+  try {
+    const hotel = await Hotel.findOne({ _id: id });
+
+    if (!hotel) {
+      return res.status(404).json({
+        message: "Hotel Not Found!",
+      });
+    }
+
+    return res.status(200).json(hotel);
+  } catch (error) {
     return res.status(500).json({
       message: "Something went wrong.",
     });
