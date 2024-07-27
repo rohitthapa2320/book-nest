@@ -1,6 +1,6 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
-import { HotelSearchResponse, HotelType } from "./types/types";
+import { HotelSearchResponse, HotelType, UserType } from "./types/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -173,6 +173,18 @@ export const fetchHotelDetailsById = async (
 
   if (!response.ok) {
     throw new Error("Error fetching hotel details");
+  }
+
+  return response.json();
+};
+
+export const fetchCurrentUser = async (): Promise<UserType> => {
+  const response = await fetch(`${API_BASE_URL}/api/users/me`, {
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching user");
   }
 
   return response.json();
