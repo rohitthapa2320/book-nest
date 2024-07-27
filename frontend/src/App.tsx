@@ -49,7 +49,7 @@ const App = () => {
         <Route
           path="/detail/:id"
           element={
-            <Layout isAuthPage={false}>
+            <Layout isAuthPage={true}>
               <HotelDetails />
             </Layout>
           }
