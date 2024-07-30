@@ -74,7 +74,6 @@ export const SearchContextProvider = ({
       sessionStorage.setItem("hotelId", hotelId);
     }
   };
-  console.log("destination_----->", destination);
   return (
     <SearchContext.Provider
       value={{
