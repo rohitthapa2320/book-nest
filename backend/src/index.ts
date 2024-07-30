@@ -9,7 +9,7 @@ import authRoutes from "./routes/auth";
 import userRoutes from "./routes/users";
 import myHotelRoutes from "./routes/my-hotels";
 import hotelsRoutes from "./routes/hotels";
-
+import myBookingsRoutes from "./routes/my-bookings";
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -34,6 +34,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelsRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
+app.use("/api/my-bookings", myBookingsRoutes);
 
 app.listen(3000, () => {
   console.log("Server is listening on 3000");
