@@ -67,6 +67,18 @@ const constructSearchQuery = (queryParams: any) => {
   return constructedQuery;
 };
 
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find().sort("-lastUpdated");
+
+    return res.status(200).json(hotels);
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({
+      message: "Error fetching hotels.",
+    });
+  }
+});
 // GET /api/hotels/search
 router.get("/search", async (req: Request, res: Response) => {
   try {
