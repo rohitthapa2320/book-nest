@@ -5,6 +5,7 @@ import {
   HotelSearchResponse,
   HotelType,
   PaymentIntentResponse,
+  TokenResponse,
   UserType,
 } from "./types/types";
 
@@ -57,7 +58,7 @@ export const signOut = async () => {
   }
 };
 
-export const validateToken = async () => {
+export const validateToken = async (): Promise<TokenResponse> => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     credentials: "include",
   });

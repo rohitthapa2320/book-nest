@@ -13,7 +13,7 @@ import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
 
 const App = () => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, isAdmin } = useAppContext();
   return (
     <Router>
       <Routes>
@@ -59,35 +59,40 @@ const App = () => {
         />
         {isLoggedIn && (
           <>
-            <Route
-              path="/my-hotels"
-              element={
-                <Layout>
-                  <MyHotels />
-                </Layout>
-              }
-            />
+            {isAdmin && (
+              <>
+                <Route
+                  path="/my-hotels"
+                  element={
+                    <Layout>
+                      <MyHotels />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/add-hotel"
+                  element={
+                    <Layout>
+                      <AddHotel />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/edit-hotel/:hotelId"
+                  element={
+                    <Layout>
+                      <EditHotel />
+                    </Layout>
+                  }
+                />
+              </>
+            )}
+
             <Route
               path="/my-bookings"
               element={
                 <Layout>
                   <MyBookings />
-                </Layout>
-              }
-            />
-            <Route
-              path="/add-hotel"
-              element={
-                <Layout>
-                  <AddHotel />
-                </Layout>
-              }
-            />
-            <Route
-              path="/edit-hotel/:hotelId"
-              element={
-                <Layout>
-                  <EditHotel />
                 </Layout>
               }
             />

@@ -67,7 +67,7 @@ router.post(
       await user.save();
 
       const token = jwt.sign(
-        { userId: user.id },
+        { userId: user.id, isAdmin: user.isAdmin },
         process.env.JWT_SECRET_KEY as string,
         {
           expiresIn: "1d",

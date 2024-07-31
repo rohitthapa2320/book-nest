@@ -3,7 +3,7 @@ import { useAppContext } from "../context/AppContext";
 import SignOutButton from "./SignOutButton";
 
 const Header = () => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, isAdmin } = useAppContext();
   return (
     <div className="bg-blue-800 py-6">
       <div className="container mx-auto flex justify-between">
@@ -19,12 +19,14 @@ const Header = () => {
               >
                 My Bookings
               </Link>
-              <Link
-                to="/my-hotels"
-                className="flex items-center text-white px-3 font-bold hover:bg-blue-600"
-              >
-                My Hotels
-              </Link>
+              {isAdmin && (
+                <Link
+                  to="/my-hotels"
+                  className="flex items-center text-white px-3 font-bold hover:bg-blue-600"
+                >
+                  My Hotels
+                </Link>
+              )}
               <SignOutButton />
             </>
           ) : (

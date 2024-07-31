@@ -51,3 +51,8 @@ export type PaymentIntentResponse = {
   clientSecret: string;
   totalCost: number;
 };
+
+export type TokenResponse = {
+  userId: string;
+  isAdmin: boolean;
+};

@@ -6,6 +6,7 @@ import { loadStripe, Stripe } from "@stripe/stripe-js";
 const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY || "";
 
 import * as apiClient from "../api-client";
+import { TokenResponse } from "../types/types";
 
 type ToastMessage = {
   message: string;
@@ -15,6 +16,7 @@ type ToastMessage = {
 type AppContextProps = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: boolean;
+  isAdmin: boolean;
   stripePromise: Promise<Stripe | null>;
 };
 
@@ -25,9 +27,13 @@ const stripePromise = loadStripe(STRIPE_PUB_KEY);
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
 
-  const { isError } = useQuery("validateToken", apiClient.validateToken, {
-    retry: false,
-  });
+  const { data, isError } = useQuery<TokenResponse>(
+    "validateToken",
+    apiClient.validateToken,
+    {
+      retry: false,
+    }
+  );
   return (
     <AppContext.Provider
       value={{
@@ -35,6 +41,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
           setToast(toastMessage);
         },
         isLoggedIn: !isError,
+        isAdmin: data ? data.isAdmin : false,
         stripePromise,
       }}
     >
