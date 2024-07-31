@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
 import { useSearchContext } from "../context/SearchContext";
-import LocationIcon from "../assets/location.png";
 import { BiMap } from "react-icons/bi";
 
 const SearchBar = () => {
@@ -57,7 +56,7 @@ const SearchBar = () => {
 
   return (
     <form
-      className="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
+      className="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
       onSubmit={handleSubmitValues}
     >
       <div className="flex flex-row items-center flex-1 bg-white p-2">
@@ -130,12 +129,12 @@ const SearchBar = () => {
       <div className="flex gap-1">
         <button
           type="submit"
-          className="w-2/3 bg-blue-600 text-white h-full p-2 font-bold text-xl hover:bg-blue-500"
+          className="w-2/3 bg-blue-600 text-white h-full p-2 font-bold md:text-xl hover:bg-blue-500"
         >
           Search
         </button>
         <button
-          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500"
+          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold md:text-xl hover:bg-red-500"
           onClick={handleClear}
         >
           Clear
