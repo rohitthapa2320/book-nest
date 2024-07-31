@@ -9,7 +9,8 @@ import {
   UserType,
 } from "./types/types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://hotelhub-com.onrender.com";
 
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
