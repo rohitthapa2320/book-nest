@@ -10,6 +10,8 @@ import userRoutes from "./routes/users";
 import myHotelRoutes from "./routes/my-hotels";
 import hotelsRoutes from "./routes/hotels";
 import myBookingsRoutes from "./routes/my-bookings";
+import path from "path";
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -29,6 +31,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);

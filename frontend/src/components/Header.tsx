@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import SignOutButton from "./SignOutButton";
-import { BiCollapse, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { useState } from "react";
 
 const Header = () => {
