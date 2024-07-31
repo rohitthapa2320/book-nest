@@ -7,7 +7,7 @@ import { HotelType } from "../types/types";
 
 const MyHotels = () => {
   const { data: myHotels, isLoading } = useQuery<HotelType[]>(
-    "my-hotels",
+    "fetchMyHotels",
     apiClient.fetchAllMyHotels,
     {
       retry: false,

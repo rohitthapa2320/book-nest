@@ -5,15 +5,15 @@ import SearchBar from "../components/SearchBar";
 
 interface LayoutProps {
   children: React.ReactNode;
-  isAuthPage: boolean;
   showSearchBar?: boolean;
+  showHero?: boolean;
 }
 
-const Layout = ({ children, isAuthPage, showSearchBar }: LayoutProps) => {
+const Layout = ({ children, showHero, showSearchBar }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      {!isAuthPage && <Hero />}
+      {showHero && <Hero />}
       {showSearchBar && (
         <div className="container mx-auto">
           <SearchBar />

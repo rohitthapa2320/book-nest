@@ -153,4 +153,26 @@ router.put(
   }
 );
 
+router.delete("/:id", verifyToken, async (req: Request, res: Response) => {
+  const id = req.params.id.toString();
+  try {
+    const hotel = await Hotel.findOneAndDelete({
+      userId: req.userId,
+      _id: id,
+    });
+
+    if (!hotel) {
+      return res.status(404).json({
+        message: "Hotel Not Found!",
+      });
+    }
+
+    return res.status(200).json(hotel);
+  } catch (error) {
+    return res.status(500).json({
+      message: `Error while deleting hotel with id: ${id}`,
+    });
+  }
+});
+
 export default router;

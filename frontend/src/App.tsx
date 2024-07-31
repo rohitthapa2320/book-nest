@@ -20,7 +20,7 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Layout isAuthPage={false} showSearchBar={true}>
+            <Layout showHero={true} showSearchBar={true}>
               <Home />
             </Layout>
           }
@@ -28,7 +28,7 @@ const App = () => {
         <Route
           path="/register"
           element={
-            <Layout isAuthPage={true}>
+            <Layout>
               <Register />
             </Layout>
           }
@@ -36,7 +36,7 @@ const App = () => {
         <Route
           path="/sign-in"
           element={
-            <Layout isAuthPage={true}>
+            <Layout>
               <SignIn />
             </Layout>
           }
@@ -44,7 +44,7 @@ const App = () => {
         <Route
           path="/search"
           element={
-            <Layout isAuthPage={false} showSearchBar={true}>
+            <Layout showHero={true} showSearchBar={true}>
               <Search />
             </Layout>
           }
@@ -52,7 +52,7 @@ const App = () => {
         <Route
           path="/detail/:id"
           element={
-            <Layout isAuthPage={true}>
+            <Layout>
               <HotelDetails />
             </Layout>
           }
@@ -62,7 +62,7 @@ const App = () => {
             <Route
               path="/my-hotels"
               element={
-                <Layout isAuthPage={true}>
+                <Layout>
                   <MyHotels />
                 </Layout>
               }
@@ -70,7 +70,7 @@ const App = () => {
             <Route
               path="/my-bookings"
               element={
-                <Layout isAuthPage={true}>
+                <Layout>
                   <MyBookings />
                 </Layout>
               }
@@ -78,7 +78,7 @@ const App = () => {
             <Route
               path="/add-hotel"
               element={
-                <Layout isAuthPage={true}>
+                <Layout>
                   <AddHotel />
                 </Layout>
               }
@@ -86,7 +86,7 @@ const App = () => {
             <Route
               path="/edit-hotel/:hotelId"
               element={
-                <Layout isAuthPage={true}>
+                <Layout>
                   <EditHotel />
                 </Layout>
               }
@@ -94,7 +94,7 @@ const App = () => {
             <Route
               path="/hotel/:id/booking"
               element={
-                <Layout isAuthPage={true}>
+                <Layout>
                   <Booking />
                 </Layout>
               }
@@ -104,7 +104,7 @@ const App = () => {
         <Route
           path="*"
           element={
-            <Layout isAuthPage={false}>
+            <Layout showHero={true}>
               <p>Not Found Page</p>
             </Layout>
           }

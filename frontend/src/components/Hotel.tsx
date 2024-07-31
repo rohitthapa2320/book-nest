@@ -3,8 +3,12 @@ import BudgetIcon from "../assets/money.png";
 import TypeIcon from "../assets/hotel.png";
 import BedIcon from "../assets/bed.png";
 import StarIcon from "../assets/star.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HotelType } from "../types/types";
+import { useMutation, useQueryClient } from "react-query";
+
+import * as apiClient from "../api-client";
+import { useAppContext } from "../context/AppContext";
 
 const Hotel = ({ hotel }: { hotel: HotelType }) => {
   const {
@@ -40,6 +44,32 @@ const Hotel = ({ hotel }: { hotel: HotelType }) => {
       icon: StarIcon,
     },
   ];
+
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { showToast } = useAppContext();
+
+  const { mutate } = useMutation(apiClient.deleteMyHotel, {
+    onSuccess: async () => {
+      showToast({
+        message: "Hotel Deleted!!",
+        type: "SUCCESS",
+      });
+      await queryClient.invalidateQueries("fetchMyHotels");
+      navigate("/my-hotels");
+    },
+    onError: () => {
+      showToast({
+        message: "Hotel Not Deleted!!",
+        type: "ERROR",
+      });
+    },
+  });
+
+  const handleDeleteHotel = (hotelId: string) => {
+    alert("Are you sure you want to delete the hotel?");
+    mutate(hotelId);
+  };
   return (
     <div className="w-full border-2 border-neutral-300 p-4 rounded">
       <div className="flex flex-col gap-4">
@@ -55,13 +85,19 @@ const Hotel = ({ hotel }: { hotel: HotelType }) => {
             </div>
           ))}
         </div>
-        <div className="flex justify-end">
+        <div className="flex gap-4 justify-end">
           <Link
             to={`/edit-hotel/${_id}`}
             className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500"
           >
             Edit Details
           </Link>
+          <button
+            className="bg-red-600 text-white p-2 font-bold hover:bg-red-500"
+            onClick={() => handleDeleteHotel(hotel._id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
