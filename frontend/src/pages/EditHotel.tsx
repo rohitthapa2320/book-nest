@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 import * as apiClient from "../api-client";
-import ManageHotelForm from "../forms/ManageHotelForm";
+import ManageHotelForm from "../forms/manage-hotel/ManageHotelForm";
 import { HotelType } from "../types/types";
 import { useAppContext } from "../context/AppContext";
 

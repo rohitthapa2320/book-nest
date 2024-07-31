@@ -42,6 +42,7 @@ router.post(
     ).isLength({
       min: 6,
     }),
+    check("isAdmin", "Role is required"),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);

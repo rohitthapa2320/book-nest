@@ -1,11 +1,7 @@
-import LocationIcon from "../assets/location.png";
-import BudgetIcon from "../assets/money.png";
-import TypeIcon from "../assets/hotel.png";
-import BedIcon from "../assets/bed.png";
-import StarIcon from "../assets/star.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HotelType } from "../types/types";
 import { useMutation, useQueryClient } from "react-query";
+import { BiBed, BiBuilding, BiMap, BiMoney, BiStar } from "react-icons/bi";
 
 import * as apiClient from "../api-client";
 import { useAppContext } from "../context/AppContext";
@@ -25,23 +21,23 @@ const Hotel = ({ hotel }: { hotel: HotelType }) => {
   const hotelDetailsArray = [
     {
       title: `${city}, ${country}`,
-      icon: LocationIcon,
+      icon: <BiMap size={16} />,
     },
     {
       title: type,
-      icon: TypeIcon,
+      icon: <BiBuilding size={16} />,
     },
     {
       title: `${pricePerNight} per night`,
-      icon: BudgetIcon,
+      icon: <BiMoney size={16} />,
     },
     {
       title: `${adultCount} adult, ${childCount} children`,
-      icon: BedIcon,
+      icon: <BiBed size={16} />,
     },
     {
       title: `${rating} star rating`,
-      icon: StarIcon,
+      icon: <BiStar size={16} />,
     },
   ];
 
@@ -79,7 +75,7 @@ const Hotel = ({ hotel }: { hotel: HotelType }) => {
           {hotelDetailsArray.map((item) => (
             <div className="border-2 border-neutral-300 p-2 rounded">
               <div className="flex w-full gap-2 items-center">
-                <img src={item.icon} />
+                {item.icon}
                 <p className="text-xs font-normal">{item.title}</p>
               </div>
             </div>

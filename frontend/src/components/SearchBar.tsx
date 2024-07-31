@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useSearchContext } from "../context/SearchContext";
 import LocationIcon from "../assets/location.png";
+import { BiMap } from "react-icons/bi";
 
 const SearchBar = () => {
   const search = useSearchContext();
@@ -60,7 +61,7 @@ const SearchBar = () => {
       onSubmit={handleSubmitValues}
     >
       <div className="flex flex-row items-center flex-1 bg-white p-2">
-        <img src={LocationIcon} />
+        <BiMap size={24} />
         <input
           className="text-md w-full focus:outline-none ml-2"
           value={destination}
