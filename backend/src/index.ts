@@ -27,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -40,7 +39,7 @@ app.use("/api/hotels", hotelsRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/my-bookings", myBookingsRoutes);
 
-app.get("*", (req: Request, res: Response) => {
+app.get("*", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 
