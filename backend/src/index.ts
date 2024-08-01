@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "https://hotelhub-id4j.onrender.com/",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
